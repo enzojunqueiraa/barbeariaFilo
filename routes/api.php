@@ -75,11 +75,20 @@ Route::delete('admin/servico/delete/{id}',[ServicoController::class,'excluirServ
 Route::get('admin/profissional/all', [ProfissionalController::class, 'retornarTodos']);
 Route::get('admin/servico/all',[ServicoController::class, 'retornarTodos']);
 Route::get('admin/cliente/all', [ClienteController::class, 'retornarTodos']);
+Route::post('admin/pagamento/cadastrar', [PagamentoController::class, 'tipoPagamento']);
+Route::delete('admin/pagamento/excluir/{id}', [PagamentoController::class, 'excluirPagamento']);
+Route::put('admin/pagamento/update/{id}', [PagamentoController::class, 'updatePagamento']);
+Route::get('admin/pagamento/retornarTodos', [PagamentoController::class, 'retornarTodos']);
+
 
 
 
 //Tipo de Pagamento
 Route::post('pagamento/cadastrar', [PagamentoController::class, 'tipoPagamento']);
+Route::delete('pagamento/excluir/{id}', [PagamentoController::class, 'excluirPagamento']);
+Route::put('pagamento/update/{id}', [PagamentoController::class, 'updatePagamento']);
+Route::get('pagamento/retornarTodos', [PagamentoController::class, 'retornarTodos']);
+
 
 
 

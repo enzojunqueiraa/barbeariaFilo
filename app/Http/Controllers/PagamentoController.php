@@ -72,4 +72,13 @@ class PagamentoController extends Controller
             'message' => 'Tipo de Pagamento Atualizado'
         ]);
     }
+
+    public function retornarTodos()
+    {
+        $pagamento = Pagamento::all();
+        return response()->json([
+            'status' => true,
+            'data' => $pagamento
+        ]);
+    }
 }
