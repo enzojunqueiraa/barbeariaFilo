@@ -85,6 +85,9 @@ Route::post('admin/pagamento/cadastrar', [PagamentoController::class, 'tipoPagam
 Route::delete('admin/pagamento/excluir/{id}', [PagamentoController::class, 'excluirPagamento']);
 Route::put('admin/pagamento/update/{id}', [PagamentoController::class, 'updatePagamento']);
 Route::get('admin/pagamento/retornarTodos', [PagamentoController::class, 'retornarTodos']);
+Route::post('admin/cliente/atualizar/senha', [ClienteController::class, 'esqueciMinhaSenha']);
+Route::post('admin/profissional/atualizar/senha', [ProfissionalController::class, 'esqueciMinhaSenha']);
+Route::post('admin/servico/atualizar/senha', [ServicoController::class, 'esqueciMinhaSenha']);
 
 
 
