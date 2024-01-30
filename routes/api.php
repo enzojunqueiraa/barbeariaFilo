@@ -50,8 +50,14 @@ Route::get('profissional/find/celular', [ProfissionalController::class, 'pesquis
 Route::get('profissional/find/email', [ProfissionalController::class, 'pesquisarPorEmail']);
 Route::get('profissional/find/{id}', [ProfissionalController::class, 'pesquisarPorId']);
 Route::post('profissional/atualizar/senha', [ProfissionalController::class, 'esqueciMinhaSenha']);
-Route::post('profissional/cadastrar/cliente',[ClienteController::class,'criarCliente']);
 Route::post('profissional/agendamento',[AgendaController::class,'criarHorarioProfissional' ]);
+Route::delete('profissional/agenda/delete/{id}',[AgendaController::class,'excluirHorario']);
+Route::put('profissional/agenda/atualizar/horarios', [AgendaController::class,'updateHorarios']);
+Route::get('profissional/agenda/find/datas', [AgendaController::class, 'pesquisarPorData']);
+Route::post('profissional/cadastrar/cliente',[ClienteController::class,'criarCliente']);
+Route::put('profissional/cliente/update', [ClienteController::class, 'atualizarCliente']);
+Route::delete('profissional/cliente/delete/{id}', [ClienteController::class, 'excluirCliente']);
+Route::get('profissional/cliente/all', [ClienteController::class, 'retornarTodos']);
 
 //Agendamento
 
