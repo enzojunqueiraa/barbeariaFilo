@@ -138,7 +138,7 @@ class AdministradorController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Senha redefinida',
-                'nova_senha' => Hash::make($novaSenha)
+                'nova_senha' => $novaSenha
             ]);
         } else {
             return response()->json([

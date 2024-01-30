@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PagamentoController;
@@ -69,6 +70,7 @@ Route::get('agenda/find/datas', [AgendaController::class, 'pesquisarPorData']);
 Route::post('agenda/find/data/', [AgendaController::class, 'pesquisarPorDataDoProfissional']);
 
 //Admin
+Route::post('admin/cadastrar', [AdministradorController::class, 'criarAdm']);
 Route::post('admin/cadastrar/cliente',[ClienteController::class,'criarCliente']);
 Route::post('admin/cadastrar/profissional',[ProfissionalController::class,'criarProfissional']);
 Route::post('admin/cadastrar/servicos',[ServicoController::class,'criarServico']);
@@ -87,7 +89,7 @@ Route::put('admin/pagamento/update/{id}', [PagamentoController::class, 'updatePa
 Route::get('admin/pagamento/retornarTodos', [PagamentoController::class, 'retornarTodos']);
 Route::post('admin/cliente/atualizar/senha', [ClienteController::class, 'esqueciMinhaSenha']);
 Route::post('admin/profissional/atualizar/senha', [ProfissionalController::class, 'esqueciMinhaSenha']);
-Route::post('admin/servico/atualizar/senha', [ServicoController::class, 'esqueciMinhaSenha']);
+Route::post('admin/atualizar/senha', [AdministradorController::class, 'esqueciMinhaSenha']);
 
 
 

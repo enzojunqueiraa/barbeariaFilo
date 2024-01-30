@@ -26,7 +26,7 @@ class AdmFormRequest extends FormRequest
         return [
 
             'nome' => 'required|max:120|min:5 ',
-            'email' => 'required|max:120|unique:clientes,email|email:rfc,dns',
+            'email' => 'required|max:120|unique:administradors,email|email:rfc,dns',
             'cpf' => 'required|unique:clientes,cpf|max:11|min:11',
             'senha' => 'required'
         ];
