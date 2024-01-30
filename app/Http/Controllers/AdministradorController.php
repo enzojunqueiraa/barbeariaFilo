@@ -125,4 +125,26 @@ class AdministradorController extends Controller
         ]);
     }
 
+    public function esqueciMinhaSenha(Request $request)
+    {
+        $administrador = Administrador::where('email', 'LIKE', $request->email)->first();
+        if ($administrador) {
+            $novaSenha = $administrador->cpf;
+            $administrador->update([
+                'senha' => //Hash::make
+                ($novaSenha),
+                'updated_at' => now()
+            ]);
+            return response()->json([
+                'status' => true,
+                'message' => 'Senha redefinida',
+                'nova_senha' => Hash::make($novaSenha)
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Administrador não encontrado'
+            ]);
+        }
+    }
 }

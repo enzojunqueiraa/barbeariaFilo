@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\PagamentoController;
 use App\Http\Controllers\ProfissionalController;
 use App\Http\Controllers\ServicoController;
 use Illuminate\Http\Request;
@@ -74,6 +75,11 @@ Route::delete('admin/servico/delete/{id}',[ServicoController::class,'excluirServ
 Route::get('admin/profissional/all', [ProfissionalController::class, 'retornarTodos']);
 Route::get('admin/servico/all',[ServicoController::class, 'retornarTodos']);
 Route::get('admin/cliente/all', [ClienteController::class, 'retornarTodos']);
+
+
+
+//Tipo de Pagamento
+Route::post('pagamento/cadastrar', [PagamentoController::class, 'tipoPagamento']);
 
 
 

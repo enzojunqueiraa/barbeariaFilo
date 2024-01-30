@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FormaPagamentoRequest;
+use App\Models\Pagamento;
 use Illuminate\Http\Request;
 
 class PagamentoController extends Controller
@@ -9,7 +11,9 @@ class PagamentoController extends Controller
     public function tipoPagamento(FormaPagamentoRequest $request)
     {
         $pagamento = Pagamento::create([
-            'tipoPagamento' => $request->tipoPagamento,
+            'nome' => $request->nome,
+            'taxa' => $request->taxa,
+            'status'=> $request->status
            
             
         ]);
@@ -50,8 +54,16 @@ class PagamentoController extends Controller
             ]);
         }
 
-        if (isset($request->tipoPagamento)) {
-            $pagamento->tipoPagamento = $request->tipoPagamento;
+        if (isset($request->nome)) {
+            $pagamento->nome = $request->nome;
+        }
+        
+        if (isset($request->taxa)) {
+            $pagamento->taxa = $request->taxa;
+        }
+        
+        if (isset($request->status)) {
+            $pagamento->status = $request->status;
         }
         $pagamento->update();
 

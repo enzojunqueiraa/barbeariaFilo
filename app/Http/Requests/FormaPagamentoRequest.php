@@ -25,7 +25,9 @@ class FormaPagamentoRequest extends FormRequest
     {
         return [
            
-                'tipoPagamento' => 'required',
+                'nome' => 'required|max:25|unique:pagamentos,nome',
+                'taxa' => 'required|max:25',
+                'status' => 'required|max:11|boolean'
         ];
     }
     public function failedValidation(Validator $validator){
@@ -37,7 +39,16 @@ class FormaPagamentoRequest extends FormRequest
 
     public function messages(){
         return [
-            'tipoPagamento.required' => 'Tipo de Pagamento Obrigatório' ,
+            'nome.required' => 'Nome Obrigatório' ,
+            'nome.max' => 'Máximo de caracteres é 25',
+            'nome.unique' => 'Nome ja cadastrado',
+
+            'taxa.required' => 'Taxa Obrigatória',
+            'taxa.max' => 'Máximo de caracteres é 25',
+
+            'status.required'=> 'Status Obrigátorio',
+            'status.boolean' => 'Formato somente em boolean',
+            'status.max' => 'Máximo de caracteres é 11'
         
 
         ];
