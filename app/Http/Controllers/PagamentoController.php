@@ -31,9 +31,6 @@ class PagamentoController extends Controller
         ], 200);
     }
 
-
-
-
     public function excluirPagamento($id)
     {
         $pagamento = Pagamento::find($id);
