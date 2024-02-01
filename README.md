@@ -6,7 +6,7 @@
 ```
 2. Acesse o diretório do projeto:
 ```
-cd barbearialb
+cd barbeariaFilo
 ```
 3. Inicializando o Repositorio
 ```
