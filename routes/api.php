@@ -85,7 +85,7 @@ Route::get('admin/servico/all',[ServicoController::class, 'retornarTodos']);
 Route::get('admin/cliente/all', [ClienteController::class, 'retornarTodos']);
 Route::post('admin/pagamento/cadastrar', [PagamentoController::class, 'tipoPagamento']);
 Route::delete('admin/pagamento/excluir/{id}', [PagamentoController::class, 'excluirPagamento']);
-Route::put('admin/pagamento/update/{id}', [PagamentoController::class, 'updatePagamento']);
+Route::put('admin/pagamento/update', [PagamentoController::class, 'updatePagamento']);
 Route::get('admin/pagamento/retornarTodos', [PagamentoController::class, 'retornarTodos']);
 Route::post('admin/cliente/atualizar/senha', [ClienteController::class, 'esqueciMinhaSenha']);
 Route::post('admin/profissional/atualizar/senha', [ProfissionalController::class, 'esqueciMinhaSenha']);
@@ -97,7 +97,7 @@ Route::post('admin/atualizar/senha', [AdministradorController::class, 'esqueciMi
 //Tipo de Pagamento
 Route::post('pagamento/cadastrar', [PagamentoController::class, 'tipoPagamento']);
 Route::delete('pagamento/excluir/{id}', [PagamentoController::class, 'excluirPagamento']);
-Route::put('pagamento/update/{id}', [PagamentoController::class, 'updatePagamento']);
+Route::put('pagamento/update', [PagamentoController::class, 'updatePagamento']);
 Route::get('pagamento/retornarTodos', [PagamentoController::class, 'retornarTodos']);
 
 

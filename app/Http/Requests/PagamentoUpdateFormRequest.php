@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class FormaPagamentoRequest extends FormRequest
+class PagamentoUpdateFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class FormaPagamentoRequest extends FormRequest
     public function rules(): array
     {
         return [
-           
-                'nome' => 'required|max:25|unique:pagamentos,nome,',
-                'taxa' => 'required|max:25',
-                'status' => 'required|max:11|boolean'
+            
+            'nome' => 'max:25|unique:pagamentos,nome,' . $this->id,
+            'taxa' => 'max:25',
+            'status' => 'max:11|boolean'
         ];
     }
     public function failedValidation(Validator $validator){
@@ -39,14 +39,14 @@ class FormaPagamentoRequest extends FormRequest
 
     public function messages(){
         return [
-            'nome.required' => 'Nome Obrigatório' ,
+          
             'nome.max' => 'Máximo de caracteres é 25',
             'nome.unique' => 'Nome ja cadastrado',
 
-            'taxa.required' => 'Taxa Obrigatória',
+           
             'taxa.max' => 'Máximo de caracteres é 25',
 
-            'status.required'=> 'Status Obrigátorio',
+            
             'status.boolean' => 'Formato somente em boolean',
             'status.max' => 'Máximo de caracteres é 11'
         

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FormaPagamentoRequest;
+use App\Http\Requests\PagamentoUpdateFormRequest;
 use App\Models\Pagamento;
 use Illuminate\Http\Request;
 
@@ -43,7 +44,7 @@ class PagamentoController extends Controller
         ]);
     }
 
-    public function updatePagamento(FormaPagamentoRequest $request)
+    public function updatePagamento(PagamentoUpdateFormRequest $request)
     {
         $pagamento = Pagamento::find($request->id);
 
