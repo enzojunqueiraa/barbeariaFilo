@@ -2,7 +2,7 @@
 
 1. Clone este repositório para o seu ambiente de desenvolvimento local utilizando o comando:
 ```
- git clone https://github.com/enzojunqueiraa/barbearialb.git
+ git clone https://github.com/enzojunqueiraa/barbeariaFilo.git
 ```
 2. Acesse o diretório do projeto:
 ```
