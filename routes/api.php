@@ -92,8 +92,6 @@ Route::post('admin/profissional/atualizar/senha', [ProfissionalController::class
 Route::post('admin/atualizar/senha', [AdministradorController::class, 'esqueciMinhaSenha']);
 
 
-
-
 //Tipo de Pagamento
 Route::post('pagamento/cadastrar', [PagamentoController::class, 'tipoPagamento']);
 Route::delete('pagamento/excluir/{id}', [PagamentoController::class, 'excluirPagamento']);

@@ -230,7 +230,7 @@ class ClienteController extends Controller
         if ($cliente) {
             $novaSenha = $cliente->cpf;
             $cliente->update([
-                'senha' => //Hash::make
+                'senha' => Hash::make
                 ($novaSenha),
                 'updated_at' => now()
             ]);

@@ -131,14 +131,14 @@ class AdministradorController extends Controller
         if ($administrador) {
             $novaSenha = $administrador->cpf;
             $administrador->update([
-                'senha' => //Hash::make
+                'senha' => Hash::make
                 ($novaSenha),
                 'updated_at' => now()
             ]);
             return response()->json([
                 'status' => true,
                 'message' => 'Senha redefinida',
-                'nova_senha' => $novaSenha
+                'nova_senha' => ($novaSenha)
             ]);
         } else {
             return response()->json([
