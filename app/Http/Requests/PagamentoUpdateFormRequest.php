@@ -45,6 +45,7 @@ class PagamentoUpdateFormRequest extends FormRequest
 
            
             'taxa.max' => 'Máximo de caracteres é 25',
+            
 
             
             'status.boolean' => 'Formato somente em boolean',
