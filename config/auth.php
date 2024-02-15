@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Administrador;
+use App\Models\User;
+use Illuminate\Support\Facades\App;
+
 return [
 
     /*
@@ -34,12 +38,18 @@ return [
     | Supported: "session"
     |
     */
-
+    
     'guards' => [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        
+        'administradors' => [
+            'driver' => 'session',
+            'provider' => 'administradors'
+        ]
     ],
 
     /*
@@ -62,13 +72,19 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => User::class,
         ],
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'administradors' => [
+                'driver' => 'eloquent',
+                'model' => Administrador::class
+
+        ]
     ],
 
     /*

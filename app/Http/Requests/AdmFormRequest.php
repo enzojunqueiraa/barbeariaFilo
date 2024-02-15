@@ -25,10 +25,10 @@ class AdmFormRequest extends FormRequest
     {
         return [
 
-            'nome' => 'required|max:120|min:5 ',
+            'name' => 'required|max:120|min:5 ',
             'email' => 'required|max:120|unique:administradors,email|email:rfc,dns',
             'cpf' => 'required|unique:clientes,cpf|max:11|min:11',
-            'senha' => 'required'
+            'password' => 'required'
         ];
     }
     public function failedValidation(Validator $validator)
@@ -42,9 +42,9 @@ class AdmFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'nome.required' => "O campo nome é obrigatorio",
-            'nome.max' => 'O campo nome deve conter no máximo 120 caracteres',
-            'nome.min' => 'O campo nome deve conter no minimo 5 caracteres',
+            'name.required' => "O campo nome é obrigatorio",
+            'name.max' => 'O campo nome deve conter no máximo 120 caracteres',
+            'name.min' => 'O campo nome deve conter no minimo 5 caracteres',
 
 
             'email.required' => 'Email obrigatorio',
@@ -57,7 +57,7 @@ class AdmFormRequest extends FormRequest
             'cpf.min' => 'CPF deve conter no mínimo 11 caracteres',
             'cpf.unique' => 'CPF Já cadastrado no sistema',
           
-            'senha.required' => 'Senha obrigatoria'
+            'password.required' => 'Senha obrigatoria'
         ];
     }
 }

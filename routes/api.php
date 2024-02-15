@@ -6,6 +6,8 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PagamentoController;
 use App\Http\Controllers\ProfissionalController;
 use App\Http\Controllers\ServicoController;
+use App\Http\Middleware\IsAuthenticated;
+use App\Http\Middleware\SetSanctumGuard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -99,7 +101,17 @@ Route::put('pagamento/update', [PagamentoController::class, 'updatePagamento']);
 Route::get('pagamento/retornarTodos', [PagamentoController::class, 'retornarTodos']);
 
 
+//Autentificação
 
+Route::post('/admin/create', [AdministradorController::class, 'store']);
+
+Route::post('/login',[AdministradorController::class, 'login']);
+
+Route::get('admin/teste', [AdministradorController::class, 'verficarUsuarioLogado'])
+->middleware([
+    'auth:sanctum', 
+    SetSanctumGuard::class,
+    IsAuthenticated::class]);
 
 
 

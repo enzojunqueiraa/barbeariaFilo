@@ -6,24 +6,10 @@ use App\Http\Requests\AdmFormRequest;
 use App\Models\Administrador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AdministradorController extends Controller
 {
-    public function criarAdm(AdmFormRequest $request)
-    {
-        $administrador = Administrador::create([
-            'nome' =>  $request->nome,
-            'email' => $request->email,
-            'cpf' => $request->cpf,
-            'senha' => Hash::make($request->senha)
-
-        ]);
-        return response()->json([
-            "success" => true,
-            "message" => "Administrador cadastrado com sucesso",
-            "data" => $administrador
-        ], 200);
-    }
 
     public function pesquisarPorCpf(Request $request)
     {
@@ -53,7 +39,7 @@ class AdministradorController extends Controller
 
     public function pesquisarPorNome(Request $request)
     {
-        $administrador =  Administrador::where('nome', 'like', '%' . $request->nome . '%')->get();
+        $administrador =  Administrador::where('name', 'like', '%' . $request->nome . '%')->get();
 
         if (count($administrador) > 0) {
 
@@ -98,8 +84,8 @@ class AdministradorController extends Controller
             ]);
         }
 
-        if (isset($request->nome)) {
-            $administrador->nome = $request->nome;
+        if (isset($request->name)) {
+            $administrador->name = $request->name;
         }
 
         if (isset($request->email)) {
@@ -112,8 +98,8 @@ class AdministradorController extends Controller
 
         
 
-        if (isset($request->senha)) {
-            $administrador->senha = $request->senha;
+        if (isset($request->passoword)) {
+            $administrador->passoword = $request->passoword;
         }
 
 
@@ -131,7 +117,7 @@ class AdministradorController extends Controller
         if ($administrador) {
             $novaSenha = $administrador->cpf;
             $administrador->update([
-                'senha' => Hash::make
+                'password' => Hash::make
                 ($novaSenha),
                 'updated_at' => now()
             ]);
@@ -146,5 +132,69 @@ class AdministradorController extends Controller
                 'message' => 'Administrador não encontrado'
             ]);
         }
+    }
+
+    public function store(Request $request){
+
+        try {
+            $data = $request->all();
+
+            $data['password'] = Hash::make($request->password);
+            
+            $response = Administrador::create($data)->createToken($request->server("HTTP_USER_AGENT"))->plainTextToken;
+
+            return response()->json([
+                'status'=> 'success',
+                'message'=> "Admin cadastrado com sucesso",
+                'token' => $response
+            ],200);
+            
+       } catch(\Throwable $th){
+            
+            return response()->json([
+                'status'=>false,
+                'message'=> $th->getMessage()
+            ],500);
+        }
+    
+    }
+
+    public function login(Request $request){
+
+        try{
+
+            if(Auth::guard('administradors')->attempt([
+                'email'=> $request->email,
+                'password'=> $request->password
+            ])){
+                $user = Auth::guard('administradors')->user();
+
+            $token = $user->createToken($request->server('HTTP_USER_AGENT', ['administradors']))->plainTextToken;
+
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Login efetuado com sucesso',
+                    'token' => $token
+                ]);
+            } else{
+                return response()->json([
+                    'status' => false,
+                    'message' => "Credencias incorretas"
+                ]);
+            }
+
+        } catch(\Throwable $th){
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ],500);
+        }
+
+    }
+
+    public function verficarUsuarioLogado(){
+
+        return Auth::user();
+
     }
 }
